@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+#container .btn-get-started:hover {
+  background: #df9a55;
+  height:100px;
+}
+
+
+
+.container {
+  /* background-color:aquamarine; */
+  padding: 1.5rem;
+  margin: 1rem;
+  /* align-items: flex-start; */
+  border-radius: .5rem;
+  text-align: left;
+}
