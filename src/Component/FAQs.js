@@ -1,6 +1,6 @@
 import React from 'react'
-import { Card, Container } from 'react-bootstrap'
-import NavbarSection from './NavbarSection'
+import { Container, Table } from 'react-bootstrap'
+import NavbarSection from './Navbars/NavbarSection'
 import faqqq from '../Images/faqqq.png'
 
 
@@ -12,25 +12,185 @@ const FAQs = () => {
   return (
     <div>
 
-   
-        <NavbarSection />
-     
-<Container className='d-md-flex' >
-      <div style={heading} className='container p-5 text-white'>
-        <h1><i>Frequently asked questions ????</i></h1>
-      </div>
       <div>
-        <img src={faqqq}/>
+        <NavbarSection />
       </div>
+
+      <Container className='d-md-flex my-5'>
+        <div style={heading} className='container p-5 text-white'>
+          <h1><i>Frequently asked questions ????</i></h1>
+        </div>
+        <div>
+          <img src={faqqq} />
+        </div>
       </Container>
 
       <div className='container'>
-
-        <h2 style={{color:'#401664'}}>What to know about Car loan application</h2>
-
+        <h2 style={{ color: '#401664' }}>What to know about Car loan application</h2>
         <ol >
-          <li style={stylelist}>Who can apply for a NatWest car loan?</li>
-          <p>To apply for a loan you need to be 18+ and Indian citizen.</p>
+          <li style={stylelist}><h5>Am i eligible?</h5></li>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Particulars</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Minimum Age of the Applicant</td>
+                <td>20 years</td>
+
+              </tr>
+              <tr>
+                <td>Maximum Age of the Applicant</td>
+                <td>60 years</td>
+
+              </tr>
+              <tr>
+                <td>Minimum Annual Income</td>
+                <td>	Rs.3 lakh </td>
+              </tr>
+
+              <tr>
+                <td>Minimum CIBIL Score</td>
+                <td>500+</td>
+              </tr>
+
+              <tr>
+                <td>Car Model</td>
+                <td>Any approved car model</td>
+              </tr>
+
+              <tr>
+                <td>Country or Place of Residence</td>
+                <td>India (rural/semi-urban/urban areas)</td>
+              </tr>
+            
+            </tbody>
+          </Table>
+
+
+          <li style={stylelist}><h5>What documents required for salaried professionals ?</h5></li>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Document</th>
+                <th>Requirement</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Identity Proof</td>
+                <td><ul>
+                  <li>Aadhaar card</li>
+                  <li>PAN card</li>
+                  <li>Driving Licence</li>
+                  <li>Passport</li>
+                </ul>
+                </td>
+
+              </tr>
+              <tr>
+                <td>Age Proof</td>
+                <td><ul>
+                  <li>Birth certificate</li>
+                  <li>Aadhaar card</li>
+                </ul>
+                </td>
+
+              </tr>
+              <tr>
+                <td>Income Proof</td>
+                <td><ul>
+                  <li>Salary slips</li>
+                  <li>Form 16</li>
+                </ul>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Bank Statement</td>
+                <td><ul>
+                  <li>3 to 6 months bank statement</li>
+
+                </ul>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Address Proof</td>
+                <td><ul>
+                  <li>Aadhaar card</li>
+                  <li>Passport</li>
+                  <li>Utility bill (Electricity, water, or telephone)</li>
+                </ul>
+                </td>
+              </tr>
+
+            </tbody>
+          </Table>
+
+          <li style={stylelist}><h5>What documents required for Self-Employed Individuals ?</h5></li>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Document</th>
+                <th>Requirement</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Identity Proof</td>
+                <td><ul>
+                  <li>Aadhaar card</li>
+                  <li>PAN card</li>
+                  <li>Driving Licence</li>
+                  <li>Passport</li>
+                </ul>
+                </td>
+
+              </tr>
+              <tr>
+                <td>Age Proof</td>
+                <td><ul>
+                  <li>Birth certificate</li>
+                  <li>Aadhaar card</li>
+                </ul>
+                </td>
+
+              </tr>
+              <tr>
+                <td>Income Proof</td>
+                <td><ul>
+                  <li>Income tax returns for up to 2 years</li>
+                  <li>Audited balance sheet</li>
+                  <li>Profit-loss statement</li>
+                </ul>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Bank Statement</td>
+                <td><ul>
+                  <li>3 to 6 months bank statement</li>
+
+                </ul>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Address Proof</td>
+                <td><ul>
+                  <li>Aadhaar card</li>
+                  <li>Passport</li>
+                  <li>Utility bill (Electricity, water, or telephone)</li>
+                </ul>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+
           <li style={stylelist}>When would I receive my money?</li>
           <p>You could get your loan funds on the same day if you apply online, are unconditionally accepted and sign your loan documents before 5.45pm Mon – Fri.
             Sometimes we need to contact you for more information, so it can take a little longer.</p>
@@ -45,7 +205,6 @@ const FAQs = () => {
           <p>We’ll give you your loan quote ,then we’ll ask you to submit your documents via personalised link </p>
           <li style={stylelist}>Will applying for loan impact my credit score?</li>
           <p>No, we’ll do a soft credit check and  will offer you an indicative loan quote via on the app itself as well on email. If you’re happy with your loan details you can then accept our offer and submit your loan document where we’ll complete a full credit check.</p>
-
         </ol>
 
 
@@ -54,29 +213,28 @@ const FAQs = () => {
 
       <div className='container'>
 
-<h2 style={{color:'#401664'}}>What happens once I've applied online?</h2>
+        <h2 style={{ color: '#401664' }}>What happens once I've applied online?</h2>
 
-<ol >
-  <li style={stylelist}>If you finished and your application was accepted</li>
-  <p>Congratulations. You'll receive written confirmation of your loan account details in the next few days. </p>
-
-<p>Don't worry if you notice the loan account has been opened before you receive your loan funds, this is normal and you should expect to receive the funds shortly..</p>
- 
-  <li style={stylelist}>
-If you finished, but we've asked you to provide more information</li>
-  <p>
-We've received your application. We'll be in touch within 5 working days, we just need to check your details and we will get back to you if we need more information. 
-</p>
-<p>You may receive an email or text message inviting you to provide documents information electronically via our emal link.</p>
-
-  <li style={stylelist}>How do I check the status of my loan?</li>
-  <p>
-  You can check your loan status and other details after Successfull login on App.</p>
-
-</ol>
+        <ol >
+          <li style={stylelist}>If you finished and your application was accepted</li>
+          <p>Congratulations. You'll receive written confirmation of your loan account details in the next few days. </p>
 
 
-</div>
+          <li style={stylelist}>
+            If you finished, but we've asked you to provide more information</li>
+          <p>
+            We've received your application. We'll be in touch shortly, we just need to check your details and we will get back to you if we need more information.
+          </p>
+          <p>You may receive an email or text message inviting you to provide documents information electronically via our emal link.</p>
+
+          <li style={stylelist}>How do I check the status of my loan?</li>
+          <p>
+            You can check your loan status and other details after Successfull login on App.</p>
+
+        </ol>
+
+
+      </div>
       {/* Documents Required To Apply For Instant Loan:
       Below are the documents which you will need to apply for personal loan online.
       1. Identity proof: You will have to submit Aadhar card, Pan Card, Driving License or Passport as your ID proof.
@@ -118,19 +276,19 @@ We've received your application. We'll be in touch within 5 working days, we jus
 
       Now, wasn’t that easy and quick? So, stop dreaming about owning a new car and apply for a car loan with Mahindra Finance today!
  */}
- <footer style={{backgroundColor:'#401664', color:'white'}} className="d-flex flex-wrap justify-content-between align-items-center p-4 border-top">
-    <div className="col-md-8 d-flex align-items-center">
-     
-      <p> © 2005-2022 National Westminster Bank plc</p>
-      
-    </div>
+      <footer style={{ backgroundColor: '#401664', color: 'white' }} className="d-flex flex-wrap justify-content-between align-items-center p-4 border-top">
+        <div className="col-md-8 d-flex align-items-center">
 
-    <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
-    <li className="ms-3"><a href="#"><svg style={{backgroundColor:'white'}} xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><path d="M0 0v24h24v-24h-24zm18.862 9.237c.208 4.617-3.235 9.765-9.33 9.765-1.854 0-3.579-.543-5.032-1.475 1.742.205 3.48-.278 4.86-1.359-1.437-.027-2.649-.976-3.066-2.28.515.098 1.021.069 1.482-.056-1.579-.317-2.668-1.739-2.633-3.26.442.246.949.394 1.486.411-1.461-.977-1.875-2.907-1.016-4.383 1.619 1.986 4.038 3.293 6.766 3.43-.479-2.053 1.079-4.03 3.198-4.03.944 0 1.797.398 2.396 1.037.748-.147 1.451-.42 2.085-.796-.245.767-.766 1.41-1.443 1.816.664-.08 1.297-.256 1.885-.517-.44.656-.997 1.234-1.638 1.697z"/></svg></a></li>
-        <li className="ms-3"><a href="#"><svg style={{backgroundColor:'white'}} xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><path d="M0 0v24h24v-24h-24zm16 7h-1.923c-.616 0-1.077.252-1.077.889v1.111h3l-.239 3h-2.761v8h-3v-8h-2v-3h2v-1.923c0-2.022 1.064-3.077 3.461-3.077h2.539v3z"/></svg></a></li>
-        <li className="ms-3"><a href="#"><svg style={{backgroundColor:'white'}}  xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><path d="M0 0v24h24v-24h-24zm8 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.397-2.586 7-2.777 7 2.476v6.759z"/></svg></a></li>
-    </ul>
-  </footer>
+          <p> © 2005-2022 National Westminster Bank plc</p>
+
+        </div>
+
+        <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
+          <li className="ms-3"><a href="#"><svg style={{ backgroundColor: 'white' }} xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><path d="M0 0v24h24v-24h-24zm18.862 9.237c.208 4.617-3.235 9.765-9.33 9.765-1.854 0-3.579-.543-5.032-1.475 1.742.205 3.48-.278 4.86-1.359-1.437-.027-2.649-.976-3.066-2.28.515.098 1.021.069 1.482-.056-1.579-.317-2.668-1.739-2.633-3.26.442.246.949.394 1.486.411-1.461-.977-1.875-2.907-1.016-4.383 1.619 1.986 4.038 3.293 6.766 3.43-.479-2.053 1.079-4.03 3.198-4.03.944 0 1.797.398 2.396 1.037.748-.147 1.451-.42 2.085-.796-.245.767-.766 1.41-1.443 1.816.664-.08 1.297-.256 1.885-.517-.44.656-.997 1.234-1.638 1.697z" /></svg></a></li>
+          <li className="ms-3"><a href="#"><svg style={{ backgroundColor: 'white' }} xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><path d="M0 0v24h24v-24h-24zm16 7h-1.923c-.616 0-1.077.252-1.077.889v1.111h3l-.239 3h-2.761v8h-3v-8h-2v-3h2v-1.923c0-2.022 1.064-3.077 3.461-3.077h2.539v3z" /></svg></a></li>
+          <li className="ms-3"><a href="#"><svg style={{ backgroundColor: 'white' }} xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><path d="M0 0v24h24v-24h-24zm8 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.397-2.586 7-2.777 7 2.476v6.759z" /></svg></a></li>
+        </ul>
+      </footer>
 
     </div>
   )

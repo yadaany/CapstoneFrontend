@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Col, Button, FormGroup, FormControl, Container, Card } from 'react-bootstrap'
+import { Form,  Button,  Card, Container } from 'react-bootstrap'
 import {Link, useNavigate } from 'react-router-dom';
 
-import { NavLink } from 'react-bootstrap';
-import Nav from 'react-bootstrap/Nav';
+
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { login } from '../Redux/User';
+
+// import { login } from '../Redux/User';
 import { doLogin } from './Auth';
 import axios from 'axios';
-import log from '../Images/log.png'
-import "./Login.css";
-import { useDispatch } from 'react-redux';
+import loginimg from '../Images/loginimg.jpg'
+// import { useDispatch } from 'react-redux';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
+import LoginIcon from '@mui/icons-material/Login';
+
+
 
 const SignIn = () => {
 
@@ -23,17 +25,16 @@ const SignIn = () => {
   const styledLogo = {
     height: 40
   }
-  const styledbutton = { backgroundColor: "#009688", marginBottom: "10px" }
+  const styledbutton = { backgroundColor: "#401664", marginBottom: "10px" }
 
 
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [users, setUsers]=useState([]);
-  // const[currentuser, setCurrentUser]=useState();
   var currentuser=null;
   var localuser;
 
-  // let [registeredusers, setRegisteredusers] = useState([]);
+
   const navigate = useNavigate();
   // const dispatch = useDispatch();
   let token='';
@@ -41,8 +42,10 @@ const SignIn = () => {
 
 
   useEffect(() => {
-    axios.get(`http://localhost:8090/allusers`)
-    
+    axios.get(`http://localhost:8091/allusers`,
+    {headers: { 
+      Authorization: `Bearer ${token}`}}   
+    )    
         .then(res => {
           console.log(res.data) 
           setUsers(res.data)}   
@@ -64,8 +67,6 @@ const SignIn = () => {
 
   console.log(currentuser);
 
-
-
     e.preventDefault();
     let sendrecord =
     {
@@ -75,7 +76,7 @@ const SignIn = () => {
 
     console.log(username);
 
-    axios.post('http://localhost:8090/token', sendrecord)
+    axios.post('http://localhost:8091/token', sendrecord)
       .then(response => {
         console.log(response.data.token);
         token=response.data.token
@@ -93,14 +94,9 @@ const SignIn = () => {
       })
       .catch(function (error) {
         console.log(error);
-        alert("Invalid credentials")
+        alert("Invalid Username/Password combination")
       })
 
-    // dispatch(login(
-    //   {
-    //     username,
-    //     name: currentuser.name
-    //   }))
   }
 
 
@@ -119,56 +115,48 @@ const SignIn = () => {
           />{' '}
           NatWest
         </Navbar.Brand>
-        <Link style={styledlinked} to='/signup'>Sign up</Link>
-
+        <Link style={styledlinked} to='/signup'>Sign up <LoginIcon style={{ marginLeft: 'auto', color: 'white' }}/></Link>       
       </Navbar>
 
-      <Container className='d-md-flex'>
+      <Container className='d-md-flex p-5 my-5 '>
         
-      <Container>
-        <img src={log} />
+      <Container className="d-none d-lg-block">
+        <img src={loginimg} />
         </Container >
        
-      <Container>
-          <Card>
+      <Container className='my-4' >
+          <Card style={{ backgroundColor: "#009688"}}>
             <Card.Body>
-          <h2 style={{ textAlign: 'center' }}>Login Form</h2>
+        
+          <h2 style={{ textAlign: 'center' }}>Login <LockOpenIcon/></h2>
           <Form onSubmit={handlesubmit}>
             <Form.Group className="mb-3" controlId="formGroupEmail">
               <Form.Label>Username</Form.Label>
-              <Form.Control type="text" placeholder="Enter username" required onChange={(e) => setUsername(e.target.value)} />    
+              <Form.Control name="Username" type="text" placeholder="Enter username" required onChange={(e) => setUsername(e.target.value)} />    
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formGroupPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} />
+              <Form.Control name="Password" type="Password" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} />
             </Form.Group>
-   
+
               <Button style={styledbutton} type="submit" >
                 Continue
               </Button>
-              <p>Not an online user? <Link to="/signup">Sign up here</Link></p>
+              <p>Not an online user? <Link style={{color:'white'}} to="/signup">Sign up here</Link></p>
            
           </Form>
 
           </Card.Body>
           </Card>
           </Container>
-
-        
-          {/* <Container>
-        <img src={log} />
-        </Container > */}
        
-
       </Container>
 
 
-      <footer style={{ backgroundColor: '#401664', color: 'white' }} className="d-flex flex-wrap justify-content-between align-items-center p-4 border-top">
+      <footer style={{ backgroundColor: '#401664', color: 'white', marginTop:'5px' }} className="d-flex flex-wrap justify-content-between align-items-center p-5 border-top">
         <div className="col-md-8 d-flex align-items-center">
-
           <p> © 2005-2022 National Westminster Bank plc</p>
-
         </div>
 
         <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">

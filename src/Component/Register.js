@@ -7,16 +7,17 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import reg from '../Images/reg.png'
-
+import LoginIcon from '@mui/icons-material/Login';
+import NavbarSmall from './Navbars/NavbarSmall';
 
 
 function Register() {
 
-  const styledbutton = { backgroundColor: "#009688", marginBottom:"10px" };
+  const styledbutton = { backgroundColor: "#401664", marginBottom:"10px" };
   const styledlinked = { color: "white", "textDecoration": "none", marginLeft: 'auto' };
   const styledNav = { backgroundColor: "#401664", padding: 5 }
-  const errorstyle = { color: "red" };
-  const styledform={backgroundColor: "#", color:'#401664"'}
+  const errorstyle = { color: "yellow"};
+  const styledform={backgroundColor: "#009688"}
 
   const [Users, setUsers]=useState([]);
   // const[username, setUserName]=useState('');
@@ -27,42 +28,42 @@ function Register() {
   const navigate = useNavigate();
 
 
-  useEffect(() => {
-    axios.get(`http://localhost:8090/allusers`)
+//   useEffect(() => {
+//     axios.get(`http://localhost:8090/allusers`)
     
-        .then(res => {
-          console.log(res.data) 
-          setUsers(res.data)}   
-        ) 
-        .catch(err => console.log(err))
-})
+//         .then(res => {
+//           console.log(res.data) 
+//           setUsers(res.data)}   
+//         ) 
+//         .catch(err => console.log(err))
+// })
 
 
 
   const onSubmit = (data) => {
 
-    for (let i = 0; i < Users.length; i++) {
-      if (data.Username === Users[i].username) {
-          userid_exist = true
-          // alert("username already exist")
-      }
-  }
-  for (let i = 0; i < Users.length; i++) {
-      if (data.Email === Users[i].emailid) {
-        emailid_exist = true
-          // alert("email already exist")
-      }
-  }
+  //   for (let i = 0; i < Users.length; i++) {
+  //     if (data.Username === Users[i].username) {
+  //         userid_exist = true
+  //         // alert("username already exist")
+  //     }
+  // }
+  // for (let i = 0; i < Users.length; i++) {
+  //     if (data.Email === Users[i].emailid) {
+  //       emailid_exist = true
+  //         // alert("email already exist")
+  //     }
+  // }
 
-    if (userid_exist) {
-      alert(`Username already exist. Please use a different a username to continue`)
-  }
+  //   if (userid_exist) {
+  //     alert(`Username already exist. Please use a different a username to continue`)
+  // }
 
-    else if (emailid_exist) {
-      alert(`Email ID already exist. Please use a different email id to continue or Login`)
-  }
+  //   else if (emailid_exist) {
+  //     alert(`Email ID already exist. Please use a different email id to continue or Login`)
+  // }
 
-  else{
+  // else{
 
     let addrecord =
 
@@ -80,13 +81,16 @@ function Register() {
       .then(response => {
         console.log(response);
         alert(" Registeration Successfull");
-        navigate("/")
+        navigate("/signin")
       })
       .catch(function (error) {
+        if(error.response.data="User Already Exists"){
+          alert("Username already taken, Try with different one")
+        }
         console.log(error);
       })
 
-  }}
+  }
 
   const { register, formState: { errors }, handleSubmit, trigger, watch } = useForm();
   const Password = useRef({});
@@ -95,47 +99,30 @@ function Register() {
   return (
     <div>
 
-      <Navbar style={styledNav} variant="dark">
-        <Navbar.Brand href="/">
-          <img
-            alt=""
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREfv4bu-TEUp4k4el9jvzj9oA_kbG_qaed3Y9M15C0mFAPsJh46XvoqI1mViznL5lYvQ8&usqp=CAU"
-            width="40"
-            height="40"
-            className="d-inline-block align-top"
-          />{' '}
-          NatWest
-        </Navbar.Brand>
-        <Link style={styledlinked} to='/signin'>Log in</Link>
-      </Navbar>
+      <NavbarSmall/>
 
+      <Container className='d-md-flex p-5 my-3'>
 
-      <Container className='d-md-flex'>
-        <Container>
-
-          {/* <div className="mt-4 p-5 text-white rounded"> */}
-            {/* <h1>Welcome to Natwest</h1>
-            <p>Register to get started....</p> */}
+        <Container className="d-none d-lg-block">
           <img src={reg} />
-
-          {/* </div> */}
-
         </Container >
 
-        <Container >
+        <Container className='p-3' >
          <Card style={styledform}>
          <Card.Body>
 
          
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <h2 style={{textAlign:'center', color:'#401664'}}>Registration Form</h2>
+            {/* <h2 style={{textAlign:'center', color:'#401664'}}>Registration Form</h2> */}
+            <h2 style={{textAlign:'center'}}>Register here!</h2>
+        
             <Form.Group className="mb-3" controlId="formBasicEmail">
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 {/* <Form.Label>Username</Form.Label> */}
-                <Form.Control type="text" placeholder="Create your username" size='sm'
-                {...register('Username', {
-                  required: "Username is required",
+                <Form.Control type="text" placeholder="Create your username" size='sm' 
+                {...register('Username', {required: "Username is required",
+                  
                   pattern: {
                     value: /^[a-zA-Z0-9@#$%^&-+=()]{5,15}$/,
                     message: "Create a unique username with minimum 5 characters"
@@ -182,8 +169,8 @@ function Register() {
               <Form.Control type="email" placeholder="Enter your email address" size='sm'
                 {...register('Email', { required: "Email id is required",
                 pattern: {
-                  value: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/,
-                  message: "Email must contain @ and . domain",
+                  value: /^[^!#@%$&*()_+-\s][a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/,
+                  message: "Invalid Email Format",
                  }})}
                 onKeyUp={() => {
                   trigger("Email");
@@ -197,22 +184,24 @@ function Register() {
               </Form.Text>
             </Form.Group>
 
-            <Form.Control className="mb-3" type="number" placeholder="Mobile Number" size='sm'
-               {...register('Mobile', { required: "Mobile is required",
+            <Form.Group className="mb-3" >     
+            <Form.Control type="numeric" placeholder="Mobile Number" size='sm'
+               {...register('Mobile', { required: "Mobile Number is required",
                pattern: {
-                 value: /^[0-9]{10}$/,
-                 message: "Mobile Number must have 10 digits ",
+                 value: /^[^!#@%$&*()_+-\s][0-9]{09}$/,
+                 message: "Mobile Number must have 10 digits only",
                 }})}
                onKeyUp={() => {
                  trigger("Mobile");
                }}
               />  
               <Form.Text className="text-muted">
-               {errors.Email && (
-                  <span style={errorstyle} variant='caption'>{errors.Email.message}</span>
+               {errors.Mobile && (
+                  <span style={errorstyle} variant='caption'>{errors.Mobile.message}</span>
                 )}
               </Form.Text>
-         
+              </Form.Group>
+
 
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -257,7 +246,7 @@ function Register() {
               Submit
             </Button>
 
-            <p>Already registered ? <Link to="/signin">Login</Link></p>
+            <p>Already registered ? <Link style={{color:'white'}} to="/signin">Login</Link></p>
           </Form>
           </Card.Body>
           </Card>

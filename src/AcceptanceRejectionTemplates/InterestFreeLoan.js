@@ -1,69 +1,65 @@
-import { TableCell, TableHead, TableRow } from '@mui/material'
-import React from 'react'
-import { Button, Container, Navbar } from 'react-bootstrap'
+import React, { useRef } from 'react'
+import { Button, Form } from 'react-bootstrap'
 // import { Table } from 'react-bootstrap'
 import Table from 'react-bootstrap/Table'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import thumbsup from '../Images/thumbsup.png'
+import NavbarDash from '../Component/Navbars/NavbarDash'
+import Footersmall from '../Component/Footersmall'
+import emailjs from '@emailjs/browser';
+import swal from 'sweetalert'
 const InterestFreeLoan = () => {
 
   const couser = useSelector(state => state.user.value)
-
 
   const styledbutton = { backgroundColor: "#009688", marginBottom: "10px", marginLeft: 'auto' };
   const styledlinked = { color: "white", "textDecoration": "none", marginLeft: 'auto' };
   const styledNav = { backgroundColor: "#401664", padding: 5 }
   const styledbuttonNav = { backgroundColor: "#401664", marginBottom: "10px", marginLeft: 'auto' }
   const styledname = { color: "white", marginLeft: 'auto' };
+  const styledtable ={backgroundColor: "#009688", color:'white'};
 
-
-  const navigate = useNavigate();
   const userdetails = JSON.parse(localStorage.getItem('formData'));
   const emidetails = JSON.parse(localStorage.getItem('emidata'));
 
 
-  const deletetoken = () => {
-    localStorage.removeItem("token");
-    navigate("/")
-  }
+  const navigate = useNavigate();
+  const form = useRef();
+ 
+    const sendEmail = (e) => {
+      e.preventDefault();
+  
+      emailjs.sendForm('service_gbvx14v', 'template_fu7j6wb', form.current, 'SSDQahtvwe6REDH9n')
+        .then((result) => {
+            console.log(result.text);
+            swal({
+              title: "Loan Approved!",
+              text: "Your application is succesfully accepted. You will shortly receive an email for document verification",
+              icon:"success"
+            });
+            // alert("Your application is succesfully accepted. You will shortly receive an email for document verification")
+            navigate('/dashboard')
+        }, (error) => {
+            console.log(error.text);
+        });
+    };
 
-  const handleClick = () => {
-
-    alert('Your application is succesfully accepted. Our agent will contact you shortly for document verification')
-
-  }
+  // const handleClick = () => {
+  //   alert('Your application is succesfully accepted. You will shortly receive an email for document verification')
+  //   navigate("/dashboard")
+  // }
 
   return (
-    <div>
-      <Navbar style={styledNav} variant="dark">
-        <Navbar.Brand href="/">
-          <img
-            alt=""
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREfv4bu-TEUp4k4el9jvzj9oA_kbG_qaed3Y9M15C0mFAPsJh46XvoqI1mViznL5lYvQ8&usqp=CAU"
-            width="40"
-            height="40"
-            className="d-inline-block align-top"
-          />{' '}
-          NatWest
-        </Navbar.Brand>
+    <div >
 
-        <Button style={styledbuttonNav} onClick={deletetoken}><Link style={styledlinked} to='/signin'>Log out</Link></Button>
-      </Navbar>
-
-      <Container>
-       
-        <h2> <img src={thumbsup}/>
-          <i>Congratulations your interest free loan is approved!**!
-            {couser.message}
-          </i>
-          
+      <NavbarDash />
+      <div className='container' >
+      
+        <h2> <img src={thumbsup} />
+          <i>Congratulations your interest free loan is approved!**!</i>
         </h2>
         
-      </Container>
-
-      
-             <div className='container'>
         <Table striped bordered hover >
           <thead>
             <tr>
@@ -99,21 +95,49 @@ const InterestFreeLoan = () => {
           </tbody>
 
         </Table>
+        
 
+       
 
-        <div className='container'>
-
-          <ul>
+          <ul >
             <li>Loan disbursal is subject to document verification.</li>
             <li>You will receive a confirmation email and link to upload your document.</li>
             <li>Reach out to us for further clarification toll free 1800 123 1477</li>
 
           </ul>
 
-          <Button onClick={handleClick} className='btn-success'>I accept the offer</Button>
+          <Form ref={form} onSubmit={sendEmail}>      
+            <Form.Group className="mb-3" controlId="user_name">
+              {/* <Form.Label>Name</Form.Label> */}
+              <Form.Control type="hidden" placeholder={userdetails.name} value={userdetails.name} required name="from_name" />    
+            </Form.Group>
 
-        </div>
+            <Form.Group className="mb-3" controlId="user_name">
+              {/* <Form.Label>Name</Form.Label> */}
+              <Form.Control type="hidden" placeholder={userdetails.name} value={userdetails.loan} required name="loan" />    
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="user_email">
+              {/* <Form.Label>Email</Form.Label> */}
+              <Form.Control type="hidden" placeholder={userdetails.emailid} value={userdetails.tenure} required  name="tenure"/>
+            </Form.Group>
+
+
+            <Form.Group className="mb-3" controlId="message">
+              {/* <Form.Label>Message</Form.Label> */}
+              <Form.Control type="hidden" value={userdetails} placeholder="Type  your message....." required name="message"  />
+            </Form.Group>
+            <Button type='submit' value='send' className='btn-success'>I accept the offer</Button>
+             
+           
+          </Form>
+
+
+       
+     
       </div>
+
+      <Footersmall/>
     </div>
 
 

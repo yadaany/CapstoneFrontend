@@ -2,7 +2,7 @@
 
 const SliderMarks = {
 
-    color:"white",
+
 
     marksTenure: [
         { value: 0, label: "0" },

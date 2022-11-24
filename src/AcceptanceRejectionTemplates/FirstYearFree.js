@@ -1,63 +1,58 @@
-import { TableCell, TableHead, TableRow } from '@mui/material'
-import React from 'react'
-import { Button, Navbar } from 'react-bootstrap'
-// import { Table } from 'react-bootstrap'
+import React, { useRef } from 'react'
+import { Button, Form } from 'react-bootstrap'
 import Table from 'react-bootstrap/Table'
-import { Link, useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import {useNavigate } from 'react-router-dom'
+// import { useSelector } from 'react-redux';
+import NavbarDash from '../Component/Navbars/NavbarDash'
+import Footersmall from '../Component/Footersmall'
+import thumbsup from '../Images/thumbsup.png'
+import emailjs from '@emailjs/browser';
+import swal from 'sweetalert'
 
 const FirstYearFree = () => {
 
-    const couser = useSelector(state => state.user.value)
+    // const couser = useSelector(state => state.user.value)
     const userdetails = JSON.parse(localStorage.getItem('formData'));
-
-
-    const styledbutton = { backgroundColor: "#009688", marginBottom: "10px", marginLeft: 'auto' };
-    const styledlinked = { color: "white", "textDecoration": "none", marginLeft: 'auto' };
-    const styledNav = { backgroundColor: "#401664", padding: 5 }
-    const styledbuttonNav = { backgroundColor: "#401664", marginBottom: "10px", marginLeft: 'auto' }
-    const styledname = { color: "white", marginLeft: 'auto' };
-
+    const emidetails = JSON.parse(localStorage.getItem('emidata'));
 
     const navigate = useNavigate();
+    const form = useRef();
+   
+      const sendEmail = (e) => {
+        e.preventDefault();
+    
+        emailjs.sendForm('service_gbvx14v', 'template_fu7j6wb', form.current, 'SSDQahtvwe6REDH9n')
+          .then((result) => {
+              console.log(result.text);
+              swal({
+                title: "Loan Approved!",
+                text: "Your application is succesfully accepted. You will shortly receive an email for document verification",
+                icon:"success"
+              });
+            //   alert("Your application is succesfully accepted. You will shortly receive an email for document verification")
+              navigate('/dashboard')
+          }, (error) => {
+              console.log(error.text);
+          });
+      };
 
-    const deletetoken = () => {
-        localStorage.removeItem("token");
-        navigate("/")
-    }
 
-    const handleClick = () => {
-
-        alert('Your application is succesfully accepted. Our agent will contact you shortly for document verification')
-
-    }
+    // const handleClick = () => {
+    //     alert('Your application is succesfully accepted. Our agent will contact you shortly for document verification')
+    //     navigate("/dashboard")
+    // }
 
     return (
         <div>
-            <Navbar style={styledNav} variant="dark">
-                <Navbar.Brand href="/">
-                    <img
-                        alt=""
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREfv4bu-TEUp4k4el9jvzj9oA_kbG_qaed3Y9M15C0mFAPsJh46XvoqI1mViznL5lYvQ8&usqp=CAU"
-                        width="40"
-                        height="40"
-                        className="d-inline-block align-top"
-                    />{' '}
-                    NatWest
-                </Navbar.Brand>
-                <h6 style={styledname}>Congrats!! {couser.name}</h6>
 
-
-                <Button style={styledbuttonNav} onClick={deletetoken}><Link style={styledlinked} to='/signin'>Log out</Link></Button>
-            </Navbar>
-            <h1>
-                <i>Congratulations!!
-                    {couser.message}
-                </i>
-            </h1>
-
+            <NavbarDash />
             <div className='container'>
-                <Table striped bordered hover variant="dark">
+                <h2>
+                <img src={thumbsup} />
+                    <i>Congratulations your loan is approved with first year free interest!!</i>
+                </h2>
+
+                <Table striped bordered hover>
                     <thead>
                         <tr>
                             <th colSpan={2}>Loan Description</th>
@@ -76,30 +71,64 @@ const FirstYearFree = () => {
                         </tr>
                         <tr>
                             <td>Loan Duration</td>
-                            <td>{userdetails.selectTenure}</td>
+                            <td>{userdetails.tenure}</td>
                         </tr>
 
                         <tr>
                             <td>First year monthly EMI</td>
-                            <td>{userdetails.emi}</td>
+                            <td>{emidetails.emi}</td>
                         </tr>
 
                         <tr>
                             <td>Monthly EMI from second year</td>
-                            <td>{userdetails.emi2}</td>
+                            <td>{emidetails.emi2}</td>
                         </tr>
 
                         <tr>
                             <td>Interest rate applies after first year</td>
                             <td>8%</td>
                         </tr>
-
                     </tbody>
-
                 </Table>
-            </div>
-            <Button onClick={handleClick} className='btn-success'>I agree to terms and condtion and accept the offer</Button>
 
+                <ul >
+                    <li>Loan disbursal is subject to document verification.</li>
+                    <li>You will receive a confirmation email and link to upload your document.</li>
+                    <li>Reach out to us for further clarification toll free 1800 123 1477</li>
+                </ul>
+
+
+            <Form ref={form} onSubmit={sendEmail}>      
+            <Form.Group className="mb-3" controlId="user_name">
+              {/* <Form.Label>Name</Form.Label> */}
+              <Form.Control type="hidden" placeholder={userdetails.name} value={userdetails.name} required name="from_name" />    
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="user_name">
+              {/* <Form.Label>Name</Form.Label> */}
+              <Form.Control type="hidden" placeholder={userdetails.name} value={userdetails.loan} required name="loan" />    
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="user_email">
+              {/* <Form.Label>Email</Form.Label> */}
+              <Form.Control type="hidden" placeholder={userdetails.emailid} value={userdetails.tenure} required  name="tenure"/>
+            </Form.Group>
+
+
+            <Form.Group className="mb-3" controlId="message">
+              {/* <Form.Label>Message</Form.Label> */}
+              <Form.Control type="hidden" value={userdetails} placeholder="Type  your message....." required name="message"  />
+            </Form.Group>
+            <Button type='submit' value='send' className='btn-success'>I accept the offer</Button>
+             
+           
+          </Form>
+
+                
+
+            </div>
+
+            <Footersmall />
 
         </div>
     )

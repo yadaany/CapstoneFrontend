@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button, Card, Carousel, Container, Form, Table } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Footer from './Footer'
-import NavbarSection from './NavbarSection'
+import NavbarSection from './Navbars/NavbarSection'
 import First from '../Images/First.png'
 import Second from '../Images/Second.png'
 import Third from '../Images/Third.png'
@@ -16,10 +16,16 @@ const Home = () => {
 
   const styledbutton = { backgroundColor: "#401664", border: 'none' };
   const styledlinked = { color: "white", "textDecoration": "none", marginLeft: 'auto' };
+  const navigate=useNavigate();
+
+const signup=()=>{
+  navigate('/signup')
+}
+
   return (
     <div>
       
-    <div className='mb-2'>
+    <div className='mb-5'>
       <NavbarSection />
   </div>
 
@@ -55,63 +61,31 @@ const Home = () => {
       
           </Carousel.Item>
         </Carousel>
-        {/* </Container> */}
+        
 
-        {/* <div  className="d-flex align-item-center mt-5">
-                <div className="container-fluid nav_bg">
-                    <div className='row'>
-                        <div className='col-10 mx-auto'>
-                            <div className='row'>
-                                <div className='col-md-5 pt-5 pt-lg-0 order-2 order-lg-1 d-flex justify-content-center flex-column'>
-                                    <h1>
-                                    Need Car loan
-                                    </h1>
-                                    <Card className='my-3'>
-                                      <Card.Body>
-                                      <Card.Text>
-                                    Even if some of your plans have been pushed back, there is still time to make your goals happen.
-                                     Other loan amounts available at alternative rates. Our rates depend on your circumstances and loan amount and may differ from the Representative APR. To apply, you must be 18+ and a UK resident with a NatWest current account (held for 3+ months).
-                                    </Card.Text>
-                                 </Card.Body>
-                                  </Card>
-                                </div>
-                                <div className='col-lg-7 order-1 order-lg-2 header-img'>
-                                    <img src={First} className="img-fluid" alt="round img" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
-
-        <Container  >
-
-
+        <div className='container my-4'  >
           <Card className='m-2' >
             <Card.Body>
               <h2>Get Instant Car Loan at Zero or Lowest Interest Rates</h2>
               <p>
-                Owning and driving a vehicle is a dream to many. With high rates of transportation, buying a vehicle appears a much lucrative option in the long run. But at times when the cost of living is exorbitantly high, managing the amount for buying an automobile can be an excruciating ordeal. At times like these auto loans can be a rosy choice. We at Fibe provide the best auto loan with lowest rates of interest. With our online auto loans, get an amount upto ₹ 5,00,000 credited to your account. Using our instant loan app in India, avail best online auto loans quickly.
+                Owning and driving a vehicle is a dream to many. With high rates of transportation, buying a vehicle appears a much lucrative option in the long run. But at times when the cost of living is exorbitantly high, managing the amount for buying an automobile can be an excruciating ordeal. At times like these auto loans can be a rosy choice. We at Fibe provide the best auto loan with lowest rates of interest. Using our instant loan app in India, avail best online auto loans quickly.
               </p>
-              <Button size="lg" style={styledbutton} type="submit">
-                <Link style={styledlinked} className='btn-get-started' to='/signup'>Start your Application</Link>
-              </Button>
+              <Button type="submit" size="lg" style={styledbutton} onClick={signup}>
+                {/* <Link style={styledlinked} className='linktoStartApp' to='/signup'>Start your Application</Link> */}
+                Start your Application </Button>
             </Card.Body>
           </Card>
-
-        </Container >
+        </div >
     
-
-
-          <Container className='d-md-flex justify-content-center p-1'>
-            <Card className='m-1' >
+          <div className='d-md-flex ms-5'>
+            <Card className='ms-5' >
               <Card.Img variant="top" src={cthird} />
               <Card.Body>
-                <Button style={styledbutton} >Check eligibility</Button>
+                <Button style={styledbutton}><Link style={styledlinked} to='/faq'>Check eligibility</Link> </Button>
               </Card.Body>
             </Card>
 
-            <Card className='m-1'>
+            <Card className='ms-5'>
               <Card.Img variant="top" src={csec} />
               <Card.Body>
                 <Button style={styledbutton} ><a href='#calculator' style={styledlinked}>Loan Calculator</a></Button>
@@ -119,36 +93,45 @@ const Home = () => {
               </Card.Body>
             </Card>
 
-            <Card className='m-1' >
+            <Card className='ms-5' >
               <Card.Img variant="top" src={cone} />
               <Card.Body>
                 <Button style={styledbutton}><Link style={styledlinked} to='signin'>Check your Loan Status</Link></Button>
               </Card.Body>
             </Card>
-          </Container>
+
+            {/* <Card className='m-1' >
+              <Card.Img variant="top" src={cone} />
+              <Card.Body>
+                <Button style={styledbutton}><Link style={styledlinked} to='signin'>Check your Loan Status</Link></Button>
+              </Card.Body>
+            </Card>
+          */}
+          </div>
       
-        <Container className="mt-2 p-2 rounded">
+        <Container className="my-3 p-2 rounded">
           <Card> 
           <Card.Body>
-            <h2>What credit score is needed for 0% on a car?</h2>
+            <h2>What credit score is needed for 0% interest rate on a car?</h2>
             <p>
-              Zero percent financing deals are generally reserved for borrowers with excellent credit — typically classified as a credit score of 800 and above. You'll want to review your credit reports on your own before you start shopping for auto financing.
+              Zero percent financing deals are generally reserved for borrowers with excellent credit — typically classified as a credit score of 750 and above. You'll want to review your credit reports on your own before you start shopping for auto financing.
               </p>
             <ul>
               <li>Excellent(750+)</li>
               <li>Good(700-749)</li>
-              <li>Fair(640-699)</li>
-              <li>Needs Work(less than 640)</li>
+              <li>Average(600-699)</li>
+              <li>Need work(500-600)</li>
+              <li>Poor(less than 500)</li>
             </ul>
 
-            <Button size="lg" style={styledbutton} type="submit">
-              <Link style={styledlinked} className='btn-get-started' to='/signup'>Check Your Eligibility Now</Link>
-            </Button>
+            {/* <Button size="lg" style={styledbutton} type="submit">
+              <Link style={styledlinked} className='btn-get-started' to='/signup'>Start your Application</Link>
+            </Button> */}
             </Card.Body>
             </Card> 
         </Container >
 
-        <Container className="d-flex mt-2 p-2 rounded">
+        <Container className="d-flex p-2 rounded">
           <Card>
             <Card.Body>
               <h2>Taking out a NatWest car loan</h2>

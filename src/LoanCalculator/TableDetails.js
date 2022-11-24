@@ -1,7 +1,7 @@
 // import { Table, TableCell, TableHead, TableRow } from '@mui/material'
 import React from 'react'
-import { Button, Table } from 'react-bootstrap'
-import { Link } from 'react-router-dom';
+import {  Table } from 'react-bootstrap'
+
 
 const TableDetails = (props) => {
     // const styledbutton = { backgroundColor: "#009688" };
@@ -9,8 +9,9 @@ const TableDetails = (props) => {
     const styledlinked = { color: "white", "textDecoration": "none", marginLeft: 'auto' }
     const styledTable = {
 
+        backgroundColor: '#410C41',   
         // backgroundColor:'#009688'
-        backgroundColor:'#f78e99',
+        // backgroundColor:'#f78e99',
         color:'white'
 
     }
@@ -23,7 +24,7 @@ const TableDetails = (props) => {
                 <thead>
                     <tr>
                         <th>Loan Amount</th>
-                        <td>£{props.pAmount}</td>
+                        <td>₹{props.pAmount}</td>
                     </tr>
 
                     <tr>
@@ -38,24 +39,24 @@ const TableDetails = (props) => {
 
                     <tr>
                         <td>EMI (Monthly)</td>
-                        <td>£{props.emi} </td>
+                        <td>₹{props.emi} </td>
                     </tr>
 
                     <tr>
                         <td>Total Interest</td>
-                        <td>£{props.TotalAmountOfInterest}</td>
+                        <td>₹{props.TotalAmountOfInterest}</td>
                     </tr>
 
                     <tr>
                         <td>Total Payment</td>
-                        <td>£{props.totalAmt ? props.totalAmt : 0}</td>
+                        <td>₹{props.totalAmt ? props.totalAmt : 0}</td>
                     </tr>
 
 
                 </thead>
             </Table>
 
-            <Button size='lg' style={styledbutton} ><Link style={styledlinked} to='/signup'>Start your Application</Link></Button>
+            {/* <Button size='lg' style={styledbutton} ><Link style={styledlinked} to='/signup'>Start your Application</Link></Button> */}
         </div>
     )
 }

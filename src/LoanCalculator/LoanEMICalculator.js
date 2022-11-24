@@ -1,12 +1,12 @@
-import { Slider, Table, TableBody, TableCell, TableRow, Typography } from '@mui/material'
+import { Slider, Typography } from '@mui/material'
 // import {withStyles} from '@mui/styles'
 import React, { useState } from 'react'
-import { Pie } from 'react-chartjs-2'
+// import { Pie } from 'react-chartjs-2'
 import TableDetails from './TableDetails'
 import SliderMarks from './SliderMarks'
 import { Chart, ArcElement } from 'chart.js'
-import { Button, Card } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Card } from 'react-bootstrap'
+// import { Link } from 'react-router-dom'
 Chart.register(ArcElement);
 
 
@@ -19,19 +19,14 @@ Chart.register(ArcElement);
 // })(Slider);
 
 const PrettoSlider = {
-    // root:{color: 'MediumViolatRed', height:10},
-    // thumb:{height:25, width:25, backgroundColor:'white', border:'3px solid black', marginTop:-9, marginLeft:-9},
-    // track:{height:10, borderRadius:4},
-    // rail:{height:10, borderRadius:4},
-
-    color: "purple",
+    color: "#401664",
     height: 5
 
 
 }
 
 const styledCont = {
-    backgroundColor: "#FEDFE2",
+    // backgroundColor: "#FEDFE2",
     // backgroundColor:"grey",
     padding: 25,
     borderRadius: '.5rem',
@@ -41,17 +36,13 @@ const styledCont = {
 }
 
 
-const styledpie = {
-
-}
-
 const LoanEMICalculator = () => {
 
    
 
-    const [pAmount, setpAmount] = useState(200000);
+    const [pAmount, setpAmount] = useState(500000);
     const [interest, setInterest] = useState(7);
-    const [duration, setDuration] = useState(147);
+    const [duration, setDuration] = useState(24);
     const maxValue = 5000000;
     const intMax = 20;
     const maxDuration = 240;
@@ -65,13 +56,14 @@ const LoanEMICalculator = () => {
 
     return (
         <div >
-            <Card style={styledCont}>
-            <div >
-                <h2>Loan Calculator</h2>
+              <Card >
+                <Card.Header style={{backgroundColor:'#410C41', color: 'white'}} as='h2'>Loan Calculator</Card.Header>
                 
-            </div>
+         
+            {/* <Card style={styledCont}> */}
+          
 
-            <div className='d-md-flex p-3'>
+            <div className='d-md-flex p-3'style={styledCont}>
                 <div className='col-md-6 p-3'>
                 <p>Use our loan calculator to estimate how much you could borrow, your interest rates and monthly payments, with no impact on your credit score. 
                 </p>
@@ -101,6 +93,7 @@ const LoanEMICalculator = () => {
                 </div>
             </div>
         </div>
+        {/* </Card> */}
         </Card>
     </div>
     )

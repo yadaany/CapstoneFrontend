@@ -1,7 +1,5 @@
-
-
 export const isLoggedin=()=>{
-let data=localStorage.getItem("token");
+let data=localStorage.getItem('token');
 if (data != null) return true;
 else return false;
 };
@@ -9,7 +7,7 @@ else return false;
 
 
 export const doLogin=(token, next)=>{
-    localStorage.setItem("token", JSON.stringify(token));
+    localStorage.setItem('token', JSON.stringify(token));
     next()
     
 };
