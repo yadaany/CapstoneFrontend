@@ -134,7 +134,7 @@ const signup=()=>{
         <Container className="d-flex p-2 rounded">
           <Card>
             <Card.Body>
-              <h2>Taking out a NatWest car loan</h2>
+              <h2>Taking out a car loan</h2>
               <ul>
                 <li>If you're thinking about a new car, a loan could help you spread the cost of your purchase.</li>
                 <li>We'll take your circumstances and loan amount in to account to offer a personalised car loan rate.</li>

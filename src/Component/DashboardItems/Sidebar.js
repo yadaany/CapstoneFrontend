@@ -18,14 +18,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   let token = JSON.parse(localStorage.getItem('token'));
-  // const header = new Headers({ 'Authorization': `Bearer ${token}` });
-  // const options = {
-  //    headers: header,
-  // };
 
-  // const config = {
-  //   headers: { Authorization: `Bearer ${token}` }
-  // };
 
   let mob = userdetails.mobile
 
@@ -34,19 +27,7 @@ const Sidebar = () => {
 
     console.log(mob)
     console.log(token)
-    // const headers= { 
-    //   // 'Access-Control-Allow-Origin': '*',
-    //   // 'Content-type': 'application/json',
-    //   'Content-Type': 'text/plain',
-    //   Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YWRhYW55MTIzIiwiZXhwIjoxNjY4ODc2MjI4LCJpYXQiOjE2Njg4NDAyMjh9.jnxPovwKA8ncXYKDiSRoc9ewR_jCuKSl7v1Q-UW9SxM' }
-
-    // axios.defaults.headers.common={
-    //   'Access-Control-Allow-Origin': '*',
-    //   'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-    //   Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YWRhYW55MTIzIiwiZXhwIjoxNjY4ODc2MjI4LCJpYXQiOjE2Njg4NDAyMjh9.jnxPovwKA8ncXYKDiSRoc9ewR_jCuKSl7v1Q-UW9SxM',
-    //   'Content-Type':'text/plain'
-    // }
-
+  
 
     axios.get(`/appData/${mob}`,
 
@@ -55,15 +36,12 @@ const Sidebar = () => {
           'Authorization': `Bearer ${token}`,
           'Access-Control-Allow-Origin': '*',
           "Content-type": "application/json",
-          // "Authorization": `Bearer ${token}`  
-          // 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS', 
-          // 'Access-Control-Allow-Headers': 'append,delete,entries,foreach,get,has,keys,set,values,Authorization'
+        
         }
       })
 
       .then(response => {
         console.log(response.data)
-        // res.headers("Access-Control-Allow-Origin", "true");
         localStorage.setItem('userloandetails', JSON.stringify(response.data));
         navigate('/loans')
       })
@@ -99,73 +77,72 @@ const Sidebar = () => {
   return (
     <Box>
       <List>
-        <ListItem disablePadding sx={{ display: { xs: 'none', sm: 'flex', padding: 4 } }}>
-          <AccountCircleIcon sx={{ display: { xs: 'none', sm: 'flex' }, fontSize: 40 }} />
+        <ListItem disablePadding sx={{ display: { xs: 'none', sm: 'flex', padding: 4, color: '#410C41' } }}>
+          <AccountCircleIcon sx={{ display: { xs: 'none', sm: 'flex' }, fontSize: 40, color: '#410C41' }} />
           <ListItemText><h4>{userdetails.name}</h4></ListItemText>
         </ListItem>
 
         <ListItem disablePadding>
           <ListItemButton component="a" href='#home'>
-            <ListItemIcon sx={{ color: 'black' }}>
+            <ListItemIcon sx={{ color: '#410C41' }}>
               <Home />
             </ListItemIcon>
-            <ListItemText sx={{ display: { xs: 'none', sm: 'block' } }} primary="Homepage" />
+            <ListItemText sx={{ display: { xs: 'none', sm: 'block' , color: '#401664' } }}> <b>Home</b></ListItemText>
           </ListItemButton>
         </ListItem>
 
         <ListItem disablePadding>
           <ListItemButton onClick={profile}>
-            <ListItemIcon sx={{ color: 'black' }}>
+            <ListItemIcon sx={{ color: '#410C41' }}>
               <AccountBox><Link to='/profile' style={{ textDecoration: 'none', color: 'black' }}></Link></AccountBox>
             </ListItemIcon>
-            <ListItemText sx={{ display: { xs: 'none', sm: 'block' } }} primary="My Profile" />
+            <ListItemText sx={{ display: { xs: 'none', sm: 'block' , color: '#401664'} }}> <b>My Profile</b></ListItemText>
           </ListItemButton>
         </ListItem>
 
         <ListItem disablePadding>
           <ListItemButton onClick={handleloginClick}>
-            <ListItemIcon sx={{ color: 'black' }}>
+            <ListItemIcon sx={{ color: '#410C41' }}>
               <Article />
             </ListItemIcon>
-            <ListItemText sx={{ display: { xs: 'none', sm: 'block' } }} primary="Existing Loans" />
+            <ListItemText sx={{ display: { xs: 'none', sm: 'block' , color: '#401664'} }}> <b>Loan Applications</b></ListItemText>
           </ListItemButton>
         </ListItem>
 
         <ListItem disablePadding>
           <ListItemButton onClick={handleoffers}>
-            <ListItemIcon sx={{ color: 'black' }}>
+            <ListItemIcon sx={{ color: '#410C41' }}>
               <LocalOfferIcon />
             </ListItemIcon>
-            <ListItemText sx={{ display: { xs: 'none', sm: 'block' } }} primary="Offers" />
+            <ListItemText sx={{ display: { xs: 'none', sm: 'block' , color: '#401664'} }}> <b>Offers</b></ListItemText>
           </ListItemButton>
         </ListItem>
       </List>
 
       <ListItem disablePadding>
         <ListItemButton component="a" href="#emicalculatorDash">
-          <ListItemIcon sx={{ color: 'black' }}>
+          <ListItemIcon sx={{ color: '#410C41' }}>
             <CalculateRounded />
           </ListItemIcon >
-          <ListItemText sx={{ display: { xs: 'none', sm: 'block' } }} primary="Emi Calculator">
-          </ListItemText>
+          <ListItemText sx={{ display: { xs: 'none', sm: 'block', color: '#401664' } }}> <b>Emi Calculator</b></ListItemText>
         </ListItemButton>
       </ListItem>
 
       <ListItem disablePadding>
         <ListItemButton onClick={paymentpage}>
-          <ListItemIcon sx={{ color: 'black' }}>
+          <ListItemIcon sx={{ color: '#410C41' }}>
             <PaymentIcon />
           </ListItemIcon>
-          <ListItemText sx={{ display: { xs: 'none', sm: 'block' } }} primary="Payments" />
+          <ListItemText sx={{ display: { xs: 'none', sm: 'block', color: '#401664' } }}> <b>Payments</b></ListItemText>
         </ListItemButton>
       </ListItem>
 
       <ListItem disablePadding>
         <ListItemButton onClick={contactpage}>
-          <ListItemIcon sx={{ color: 'black' }}>
+          <ListItemIcon sx={{ color: '#410C41' }}>
             <SupportIcon />
           </ListItemIcon>
-          <ListItemText sx={{ display: { xs: 'none', sm: 'block' } }} primary="Contact Us" />
+          <ListItemText sx={{ display: { xs: 'none', sm: 'block' , color: '#401664'} }}> <b>Contact Us</b></ListItemText>
         </ListItemButton>
       </ListItem>
 

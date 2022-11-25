@@ -22,7 +22,7 @@ const ApplicationForm = () => {
   const [bank, setBank] = useState("");
 
   /////////----------------------------------Styling---------------------------------------------------------------------------------------------------------//////
-  const styledbutton = { backgroundColor: "#009688", marginBottom: "10px", marginLeft: 'auto' };
+  const styledbutton = { backgroundColor: "#410C41", marginBottom: "10px", marginLeft: 'auto', border:'none' };
   const styledlinked = { color: "white", "textDecoration": "none", marginLeft: 'auto' };
   const styledNav = { backgroundColor: "#401664", padding: 5 }
   const styledbuttonNav = { backgroundColor: "#401664", marginBottom: "10px", marginLeft: 'auto' }
@@ -33,7 +33,8 @@ const ApplicationForm = () => {
   ////-----------------------------------variables for emi calculation and form validations----------------------------------------------------------//  
   let emi = '';      //---------->for interest free loan-------/
   let emi2 = '';      //---------->for first year free interest-------/
-  let emi3 = '';      //----------->for standard ineterest rate-------//
+  let emi3 = '';   
+  let emi4 = '';    //----------->for standard ineterest rate-------//
   let r = 8 / 1200;     //---------->standard monthly rate of interest-------/
   let r1 = 12 / 1200;   //----------->higher interest rate for low cibil-----/
   let message = '';
@@ -57,126 +58,270 @@ const ApplicationForm = () => {
     console.log(income);
 
 //---------form validation and EMI calculation------// 
+let emidata = {
+  emi,
+  emi2,
+  emi3,
+  emi4
+}
 
-    if (age < minAge || age > maxAge) {
-      alert("Minimum age 20 and Maximum age 60")
-    }
+if (age < minAge || age > maxAge) {
+  alert("Minimum age 20 and Maximum age 60")
+}
 
-    else if (!regexforalphanumeric.test(pan)) {
-      alert("Pan card length must be between 10 characters, Only Alpha-numeric allowed")
-    }
+else if (!regexforalphanumeric.test(pan)) {
+  alert("Pan card length must be between 10 characters, Only Alpha-numeric allowed")
+}
 
-    else if (loan < minloan) {
-      alert("Minimum amount for Loan is 2 lakhs")
-    }
+else if (loan < minloan) {
+  alert("Minimum amount for Loan is 2 lakhs")
+}
 
-    else if (income == "03 to 05" && (loan >= maxloan1)) {
-      console.log(loan);
-      // seterror("Enter a lower amount")
-      alert("You are not eligible for more than 10 lakh")
-    }
+else if (income == "03 to 05" && (loan >= maxloan1)) {
+  console.log(loan);
+  // seterror("Enter a lower amount")
+  alert("You are not eligible for more than 10 lakh")
+}
 
-    else if (income == "05 to 10" && (loan >= maxloan2)) {
-      console.log(loan);
-      // seterror("Enter a lower amount")
-      alert("You are not eligible for more than 20 lakh")
-    }
+else if (income == "05 to 10" && (loan >= maxloan2)) {
+  console.log(loan);
+  // seterror("Enter a lower amount")
+  alert("You are not eligible for more than 20 lakh")
+}
 
-    else if (income == "more than 10" && (loan >= maxloan3)) {
-      console.log(loan);
-      // seterror("Enter a lower amount")
-      alert("You are not eligible for more than 50 lakh")
-    }
+else if (income == "more than 10" && (loan >= maxloan3)) {
+  console.log(loan);
+  // seterror("Enter a lower amount")
+  alert("You are not eligible for more than 50 lakh")
+}
 
-    else if (!regexforalphanumericcar.test(car)) {
-      console.log(car);
-      alert("Enter a valid car name")
-    }
+else if (!regexforalphanumericcar.test(car)) {
+  console.log(car);
+  alert("Enter a valid car name")
+}
 
-    else if (cibil == "750 or more") {
-      emi = Math.round(loan / (tenure * 12))
-      message = "You are selected for interest free loan"
-      alert('Congratulations!! Your loan has been approved');
-      navigate("/interestFreeLoan")
-    }
 
-    else if (cibil == "700-749") {
-      emi = Math.round(loan / (tenure * 12))
-      emi2 = Math.round(loan * r / (1 - (Math.pow(1 / (1 + r), t))));
-      message = "Congratulations your loan has been approved . As you have good credit rating your first year interest will be free. From second year you will be paying Standar Interest rate "
-      alert('Congratulations!! Your loan has been approved');
-      navigate("/firstYearFree")
-    }
+else{
 
-    else if (cibil == "600-699") {
 
-      emi3 = Math.round(loan * r / (1 - (Math.pow(1 / (1 + r), t))))
-      alert('Congratulations!! Your loan has been approved');
-      navigate("/withInterest")
+let addrecord =
 
-    }
+{
+  "name": userdetails.name,
+  "mobile": userdetails.mobile,
+  "age": age,
+  "pan": pan,
+  "emptype": employment,
+  "income": income,
+  "service": service,
+  "tenure": tenure,
+  "cibil": cibil,
+  "loan": loan,
+  "carname": car,
+  "account": account,
+  "bank": bank
+}
 
-    else if (cibil == "500-599") {
-      emi3 = Math.round(loan * r1 / (1 - (Math.pow(1 / (1 + r1), t))))
-      alert('Congratulations!! Your loan has been approved');
-      navigate("/highinterest")
-    }
 
-    else {
-      message = "Thanks for applying. Unfortunately you are not eligible for Loan due to very Low Credit rating."
-      navigate("/rejectionTemplate")
-    }
+let token = JSON.parse(localStorage.getItem('token'));
+console.log(addrecord)
+console.log(emidata)
 
-    let addrecord =
+// let localuser = localStorage.setItem("formData", JSON.stringify(addrecord));
 
-    {
-      "name": userdetails.name,
-      "mobile": userdetails.mobile,
-      "age": age,
-      "pan": pan,
-      "emptype": employment,
-      "income": income,
-      "service": service,
-      "tenure": tenure,
-      "cibil": cibil,
-      "loan": loan,
-      "carname": car,
-      "account": account,
-      "bank": bank
-    }
+const headers = {
+  'Content-Type': 'application/json',
+  'Authorization': `Bearer ${token}`,
+  'Access-Control-Allow-Origin': 'http://localhost:8091'
 
-    let emidata = {
-      emi,
-      emi2,
-      emi3
-    }
-    localStorage.setItem("emidata", JSON.stringify(emidata))
-    let token = JSON.parse(localStorage.getItem('token'));
-    console.log(addrecord)
-    console.log(emidata)
+}
 
-    let localuser = localStorage.setItem("formData", JSON.stringify(addrecord));
-
-    const headers = {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-      'Access-Control-Allow-Origin': 'http://localhost:8091'
-
-    }
-
-    axios.post(`/appData`, addrecord, {
-      headers: headers
-    }
-    )
-      .then(response => {
-        console.log(response);
-
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-
+axios.post(`/appData`, addrecord, {
+  headers: headers
+}
+)
+  .then(response => {
+  console.log(response);
+  if (cibil == "750 or more") {
+    emi = Math.round(loan / (tenure * 12))
+    console.log(emi);
+    localStorage.setItem("emi", JSON.stringify(emi));
+  // localStorage.setItem("emidata", JSON.stringify(emidata));
+  // console.log(emidata);
+    alert('Congratulations!! Your loan has been approved');
+    navigate("/interestFreeLoan")
   }
+  
+  else if (cibil == "700-749") {
+    emi = Math.round(loan / (tenure * 12))
+    emi2 = Math.round(loan * r / (1 - (Math.pow(1 / (1 + r), t))));
+    localStorage.setItem("emi", JSON.stringify(emi));
+    localStorage.setItem("emi2", JSON.stringify(emi2));
+    // message = "Congratulations your loan has been approved . As you have good credit rating your first year interest will be free. From second year you will be paying Standar Interest rate "
+    alert('Congratulations!! Your loan has been approved');
+    navigate("/firstYearFree")
+  }
+  
+  else if (cibil == "600-699") {
+  
+    emi3 = Math.round(loan * r / (1 - (Math.pow(1 / (1 + r), t))))
+    localStorage.setItem("emi3", JSON.stringify(emi3));
+    alert('Congratulations!! Your loan has been approved');
+    navigate("/withInterest")
+  
+  }
+  
+  else if (cibil == "500-599") {
+    emi4 = Math.round(loan * r1 / (1 - (Math.pow(1 / (1 + r1), t))))
+    localStorage.setItem("emi4", JSON.stringify(emi4));
+    alert('Congratulations!! Your loan has been approved');
+    navigate("/highinterest")
+  }
+
+   
+  else {
+    message = "Thanks for applying. Unfortunately you are not eligible for Loan due to very Low Credit rating."
+    navigate("/rejectionTemplate")
+  }
+  
+  localStorage.setItem("formData", JSON.stringify(addrecord));
+  // localStorage.setItem("emidata", JSON.stringify(emidata))
+
+
+  })
+  .catch(function (error) {
+    if(error.response.data="User Already Exists"){
+      alert("You have already applied for car Loan. You can check your application in Existing Loan Application section")
+    navigate('/dashboard')
+    }
+    console.log(error);
+    
+  })
+}
+}
+
+    // if (age < minAge || age > maxAge) {
+    //   alert("Minimum age 20 and Maximum age 60")
+    // }
+
+    // else if (!regexforalphanumeric.test(pan)) {
+    //   alert("Pan card length must be between 10 characters, Only Alpha-numeric allowed")
+    // }
+
+    // else if (loan < minloan) {
+    //   alert("Minimum amount for Loan is 2 lakhs")
+    // }
+
+    // else if (income == "03 to 05" && (loan >= maxloan1)) {
+    //   console.log(loan);
+    //   // seterror("Enter a lower amount")
+    //   alert("You are not eligible for more than 10 lakh")
+    // }
+
+    // else if (income == "05 to 10" && (loan >= maxloan2)) {
+    //   console.log(loan);
+    //   // seterror("Enter a lower amount")
+    //   alert("You are not eligible for more than 20 lakh")
+    // }
+
+    // else if (income == "more than 10" && (loan >= maxloan3)) {
+    //   console.log(loan);
+    //   // seterror("Enter a lower amount")
+    //   alert("You are not eligible for more than 50 lakh")
+    // }
+
+    // else if (!regexforalphanumericcar.test(car)) {
+    //   console.log(car);
+    //   alert("Enter a valid car name")
+    // }
+
+    // else if (cibil == "750 or more") {
+    //   emi = Math.round(loan / (tenure * 12))
+    //   message = "You are selected for interest free loan"
+    //   alert('Congratulations!! Your loan has been approved');
+    //   navigate("/interestFreeLoan")
+    // }
+
+    // else if (cibil == "700-749") {
+    //   emi = Math.round(loan / (tenure * 12))
+    //   emi2 = Math.round(loan * r / (1 - (Math.pow(1 / (1 + r), t))));
+    //   message = "Congratulations your loan has been approved . As you have good credit rating your first year interest will be free. From second year you will be paying Standar Interest rate "
+    //   alert('Congratulations!! Your loan has been approved');
+    //   navigate("/firstYearFree")
+    // }
+
+    // else if (cibil == "600-699") {
+
+    //   emi3 = Math.round(loan * r / (1 - (Math.pow(1 / (1 + r), t))))
+    //   alert('Congratulations!! Your loan has been approved');
+    //   navigate("/withInterest")
+
+    // }
+
+    // else if (cibil == "500-599") {
+    //   emi3 = Math.round(loan * r1 / (1 - (Math.pow(1 / (1 + r1), t))))
+    //   alert('Congratulations!! Your loan has been approved');
+    //   navigate("/highinterest")
+    // }
+
+    // else {
+    //   message = "Thanks for applying. Unfortunately you are not eligible for Loan due to very Low Credit rating."
+    //   navigate("/rejectionTemplate")
+    // }
+
+    // let addrecord =
+
+    // {
+    //   "name": userdetails.name,
+    //   "mobile": userdetails.mobile,
+    //   "age": age,
+    //   "pan": pan,
+    //   "emptype": employment,
+    //   "income": income,
+    //   "service": service,
+    //   "tenure": tenure,
+    //   "cibil": cibil,
+    //   "loan": loan,
+    //   "carname": car,
+    //   "account": account,
+    //   "bank": bank
+    // }
+
+    // let emidata = {
+    //   emi,
+    //   emi2,
+    //   emi3
+    // }
+    // localStorage.setItem("emidata", JSON.stringify(emidata))
+    // let token = JSON.parse(localStorage.getItem('token'));
+    // console.log(addrecord)
+    // console.log(emidata)
+
+    // let localuser = localStorage.setItem("formData", JSON.stringify(addrecord));
+
+    // const headers = {
+    //   'Content-Type': 'application/json',
+    //   'Authorization': `Bearer ${token}`,
+    //   'Access-Control-Allow-Origin': 'http://localhost:8091'
+
+    // }
+
+    // axios.post(`/appData`, addrecord, {
+    //   headers: headers
+    // }
+    // )
+    //   .then(response => {
+    //     console.log(response);
+
+    //   })
+    //   .catch(function (error) {
+    //     if(error.response.data="User Already Exists"){
+    //       alert("You have already applied for car Loan. You can check your application in Existing Loan Application section")
+    //     }
+    //     console.log(error);
+    //   })
+
+  
 
 
   return (
@@ -185,9 +330,13 @@ const ApplicationForm = () => {
       <NavbarDash />
 
       <Container style={{ color: "#401664", marginTop: '20px', textAlign: 'left', padding: 5 }} className="col-md-6">
+         {/* <h2 style={{ textAlign: 'center', backgroundColor: '#410C41', color: 'white', padding:5 }}>Car Loan Application Form </h2> */}
         <Card>
-          <Card.Body>
-            <h2 style={{ textAlign: 'center' }}>Car Loan Application Form <img src={app} width='80' height='80' /></h2>
+          
+            <Card.Header style={{ textAlign: 'center', backgroundColor: '#410C41', color: 'white', padding:5 }}><h2 >Car Loan Application Form </h2></Card.Header>
+            {/* <img src={app} width='80' height='80' /> */}
+            {/* </h2> */}
+            <Card.Body>
             <Form onSubmit={handleLoandetails}>
 
               <Row className="g-2">
@@ -340,6 +489,10 @@ const ApplicationForm = () => {
                       <option>HDFC</option>
                       <option>Axis Bank</option>
                       <option>Citi Bank</option>
+                      <option>ICICI Bank</option>
+                      <option>SBI Bank</option>
+                      <option>Yes Bank</option>
+                      <option>Punjab National Bank</option>
 
 
                     </Form.Select>

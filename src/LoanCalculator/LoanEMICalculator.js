@@ -57,7 +57,7 @@ const LoanEMICalculator = () => {
     return (
         <div >
               <Card >
-                <Card.Header style={{backgroundColor:'#410C41', color: 'white'}} as='h2'>Loan Calculator</Card.Header>
+                <Card.Header style={{backgroundColor:'#410C41', color: 'white'}} as='h4'>Loan Calculator</Card.Header>
                 
          
             {/* <Card style={styledCont}> */}

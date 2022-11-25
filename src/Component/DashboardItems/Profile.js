@@ -31,11 +31,7 @@ const Profile = () => {
       
           
             <Table  bordered  style={styledtable} >
-          {/* <thead >
-            <tr>
-              <th style={styledtablehead} colSpan={2}><h4><Person fontSize='large'/> Personal Information </h4></th>
-            </tr>
-          </thead> */}
+        
 
           <tbody>
             <tr>
@@ -43,17 +39,7 @@ const Profile = () => {
               <td>{user.name}</td>
             </tr>
 
-            {/* <tr>
-            <td>Age</td>
-              <td>{userdetails.age}</td>
-            </tr> */}
-
-            {/* <tr>
-              <td>Account Number</td>
-              <td>yet to give</td>
-            </tr> */}
-
-            <tr>
+                   <tr>
             <td>Email address</td>
               <td>{user.emailid}</td>
             </tr>
@@ -63,15 +49,7 @@ const Profile = () => {
               <td>{user.username}</td>
             </tr>
 
-          {/* <tr>
-            <td>Employement</td>
-              <td>{userdetails.emptype}</td>
-            </tr> */}
-
-            {/* <tr>
-              <td>PAN Details</td>
-              <td>{userdetails.pan}</td>
-            </tr> */}
+        
 
             <tr>
               <td>Mobile No.</td>

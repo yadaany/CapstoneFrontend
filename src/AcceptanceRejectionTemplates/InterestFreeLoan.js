@@ -21,7 +21,8 @@ const InterestFreeLoan = () => {
   const styledtable ={backgroundColor: "#009688", color:'white'};
 
   const userdetails = JSON.parse(localStorage.getItem('formData'));
-  const emidetails = JSON.parse(localStorage.getItem('emidata'));
+  // const emidetails = JSON.parse(localStorage.getItem('emidata'));
+  const emi = JSON.parse(localStorage.getItem('emi'));
 
 
   const navigate = useNavigate();
@@ -84,7 +85,7 @@ const InterestFreeLoan = () => {
 
             <tr>
               <td>Monthly EMI</td>
-              <td>₹ {emidetails.emi}</td>
+              <td>₹ {emi}</td>
             </tr>
 
             <tr>

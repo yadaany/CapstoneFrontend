@@ -7,10 +7,10 @@ const DashMain = () => {
             <section className="section-2 container-fluid">
                 <div className="cover">
                     <div className="content text-center">
-                        <h1>Some features that made us unique</h1>
-                        <h5>Explore our Car Loans with lowest interest rate
+                        <h4>Some features that made us unique</h4>
+                        <h6>Explore our Car Loans with lowest interest rate
 
-                        </h5>
+                        </h6>
                     </div>
                 </div>
                

@@ -13,8 +13,8 @@ const Loans = () => {
     const styledbutton = { backgroundColor: "#009688", marginBottom: "10px", marginLeft: 'auto' };
     const styledlinked = { color: "white", "textDecoration": "none", marginLeft: 'auto' };
     const styledNav = { backgroundColor: "#401664", padding: 5 }
-    const styledbuttonNav = { backgroundColor: "#401664", marginBottom: "10px", marginLeft: 'auto' }
-    const styledtablehead={backgroundColor:'#401664', color:'white', textAlign:'center'}
+    const styledbuttonNav = { backgroundColor: "#410C41", marginBottom: "10px", marginLeft: 'auto', border:'none' }
+    const styledtablehead={backgroundColor: '#410C41', color:'white', textAlign:'center'}
 
     const navigate = useNavigate();
     // const deletetoken = () => {
@@ -40,7 +40,7 @@ const Loans = () => {
     <Table striped bordered hover >
           <thead style={styledtablehead}>
             <tr>
-              <th colSpan={2}><h3>Existing Loan</h3></th>
+              <th colSpan={2}><h3>Existing Loan Application</h3></th>
             </tr>
           </thead>
 

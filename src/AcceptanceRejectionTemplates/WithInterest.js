@@ -11,7 +11,8 @@ const WithInterest = () => {
 
 
   const userdetails = JSON.parse(localStorage.getItem('formData'));
-  const emidetails = JSON.parse(localStorage.getItem('emidata'));
+  // const emidetails = JSON.parse(localStorage.getItem('emidata'));
+  const emi3 = JSON.parse(localStorage.getItem('emi3'));
   // const handleClick = () => {
   //   alert('Your application is succesfully accepted. Our agent will contact you shortly for document verification')
   // }
@@ -70,7 +71,7 @@ const WithInterest = () => {
 
             <tr>
               <td>Monthly EMI</td>
-              <td>₹ {emidetails.emi3}</td>
+              <td>₹ {emi3}</td>
             </tr>
 
             <tr>

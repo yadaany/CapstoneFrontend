@@ -3,6 +3,7 @@ import { ListItemIcon } from '@mui/material';
 import React from 'react'
 import { Button, Navbar } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const NavbarDash = () => {
     const userdetails = JSON.parse(localStorage.getItem('userloandetails'));
@@ -23,6 +24,12 @@ const NavbarDash = () => {
     // }
 
     const deletetoken = () => {
+        window.confirm("Confirm Logout ?")
+        swal({
+            title: "Logged out",
+            text: "Your have successfully logged out. ",
+            icon:"success"
+          });
         localStorage.clear();  
         navigate("/")
     }
@@ -38,7 +45,7 @@ const NavbarDash = () => {
                         height="40"
                         className="d-inline-block align-top"
                     />{' '}
-                    NatWest
+                    AKY Insta-Loan
                 </Navbar.Brand>
                 <div style={{ marginLeft: 'auto', color: 'white' }}><h4>Welcome {user.name}</h4></div>
                 <div style={{ marginLeft: 'auto', color: 'white' }}>

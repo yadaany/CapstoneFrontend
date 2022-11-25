@@ -17,7 +17,8 @@ const HIghInterestRate = () => {
   
     const navigate = useNavigate();
     const userdetails = JSON.parse(localStorage.getItem('formData'));
-    const emidetails = JSON.parse(localStorage.getItem('emidata'));
+    // const emidetails = JSON.parse(localStorage.getItem('emidata'));
+    const emi4 = JSON.parse(localStorage.getItem('emi4'));
 
     const form = useRef();
    
@@ -78,7 +79,7 @@ const HIghInterestRate = () => {
   
               <tr>
                 <td>Monthly EMI</td>
-                <td>₹ {emidetails.emi3}</td>
+                <td>₹ {emi4}</td>
               </tr>
   
               <tr>

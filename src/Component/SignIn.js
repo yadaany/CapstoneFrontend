@@ -12,6 +12,7 @@ import loginimg from '../Images/loginimg.jpg'
 // import { useDispatch } from 'react-redux';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import LoginIcon from '@mui/icons-material/Login';
+import swal from 'sweetalert';
 
 
 
@@ -86,15 +87,25 @@ const SignIn = () => {
         doLogin(token, () => {
           console.log("login detail is saved");
           console.log(token);
-
           navigate("/dashboard")
         })
 
         alert("Login Successfull")
+        // swal({
+        //   title: "Logged in",
+        //   text: "Your have successfully logged in. ",
+        //   icon:"success"
+        // });
+
       })
       .catch(function (error) {
         console.log(error);
-        alert("Invalid Username/Password combination")
+        // alert("Invalid Username/Password combination")
+        swal({
+          // title: "Login failure",
+          text: "Your Username and Password do not match. Please try again",
+          icon:"info"
+        });
       })
 
   }

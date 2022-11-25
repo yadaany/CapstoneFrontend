@@ -13,7 +13,9 @@ const FirstYearFree = () => {
 
     // const couser = useSelector(state => state.user.value)
     const userdetails = JSON.parse(localStorage.getItem('formData'));
-    const emidetails = JSON.parse(localStorage.getItem('emidata'));
+    // const emidetails = JSON.parse(localStorage.getItem('emidata'));
+    const emi = JSON.parse(localStorage.getItem('emi'));
+    const emi2 = JSON.parse(localStorage.getItem('emi2'));
 
     const navigate = useNavigate();
     const form = useRef();
@@ -76,12 +78,12 @@ const FirstYearFree = () => {
 
                         <tr>
                             <td>First year monthly EMI</td>
-                            <td>{emidetails.emi}</td>
+                            <td>{emi}</td>
                         </tr>
 
                         <tr>
                             <td>Monthly EMI from second year</td>
-                            <td>{emidetails.emi2}</td>
+                            <td>{emi2}</td>
                         </tr>
 
                         <tr>

@@ -94,7 +94,7 @@ const Dashboard = () => {
 
           <div>
             <Card  style={{ textAlign: 'left' }}  >
-              <Card.Header style={{ backgroundColor: '#410C41', color: 'white', textAlign: 'center' }}><h2>Applying for a Loan is easy</h2></Card.Header>
+              <Card.Header style={{ backgroundColor: '#410C41', color: 'white', textAlign: 'center' }}><h4>Applying for a Loan is easy</h4></Card.Header>
               {/* <h2 style={{padding:'10px'}}>Applying for a Loan is easy!</h2> */}
 
 

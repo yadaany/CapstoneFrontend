@@ -17,7 +17,7 @@ function NavbarSection() {
     <Navbar style={styledNav} variant='dark' expand="lg" >
       <Container fluid>
         <Navbar.Brand href="/"> <img style={styledLogo} src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREfv4bu-TEUp4k4el9jvzj9oA_kbG_qaed3Y9M15C0mFAPsJh46XvoqI1mViznL5lYvQ8&usqp=CAU' />
-          NatWest</Navbar.Brand>
+          AKY Insta-Loan</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
